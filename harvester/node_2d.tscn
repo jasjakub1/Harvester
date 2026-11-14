@@ -473,7 +473,7 @@ animations = [{
 size = Vector2(84, 19)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rj586"]
-size = Vector2(54, 55)
+size = Vector2(26, 26)
 
 [node name="Node2D" type="Node2D" unique_id=2061195877]
 
@@ -530,3 +530,28 @@ z_index = -1
 texture = ExtResource("6_kdubu")
 region_enabled = true
 region_rect = Rect2(288.96375, 8.6228895, 60.500977, 62.827953)
+
+[node name="Dash" type="Area2D" parent="." unique_id=446454996]
+position = Vector2(973, 170)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dash" unique_id=1497599529]
+shape = SubResource("RectangleShape2D_rj586")
+
+[node name="Sprite2D" type="Sprite2D" parent="Dash" unique_id=1547508732]
+z_index = -1
+texture = ExtResource("6_kdubu")
+region_enabled = true
+region_rect = Rect2(17.618813, 17.941776, 33.81613, 32.71298)
+
+[node name="Teleport" type="Area2D" parent="." unique_id=452325127]
+position = Vector2(648, 271)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Teleport" unique_id=1778131435]
+position = Vector2(-0.5, 2)
+shape = SubResource("RectangleShape2D_rj586")
+
+[node name="Sprite2D" type="Sprite2D" parent="Teleport" unique_id=804950540]
+z_index = -1
+texture = ExtResource("6_kdubu")
+region_enabled = true
+region_rect = Rect2(80.0136, 13.19835, 44.952362, 47.64482)
