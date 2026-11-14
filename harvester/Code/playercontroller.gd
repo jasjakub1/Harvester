@@ -92,7 +92,8 @@ func _physics_process(delta: float) -> void:
 		maxspeed = 250
 		jump_height = 600
 	
-	if Input.is_action_just_pressed("checkpoint"):
+	if Input.is_action_just_pressed("checkpoint") and is_on_floor():
+		$"../CheckpointFlag".position = position
 		checkpoint = position
 	
 	var direction = Input.get_axis("left", "right")
