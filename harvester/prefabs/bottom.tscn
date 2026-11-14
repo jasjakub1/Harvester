@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://de0abo88arx75"]
 
-[ext_resource type="Script" uid="uid://be1jceiyw45g2" path="res://prefabs/bottom.gd" id="1_vum7q"]
+[ext_resource type="Script" uid="uid://be1jceiyw45g2" path="res://Code/bottom.gd" id="1_vum7q"]
 
 [node name="Top" type="Node2D" unique_id=354142471]
 

@@ -9,7 +9,7 @@ var maxspeed = 250
 const flightspeed = 200
 const decelleration = 40
 const dash_speed = 250
-var ability = "gravity"
+var ability = "none"
 var teleportUses = 2
 var double_jump = true
 var isDashing = false
@@ -48,13 +48,20 @@ func grounded() -> bool:
 		return is_on_floor()
 
 func death(cause: String) -> void:
+	isDashing = false
+	isFlying = false
+	flyingTimer = 0
 	if cause == "crush":
 		ability = "flight"
+	elif cause == "void":
+		ability = "double jump"
 	elif cause == "sky":
 		ability = "teleport"
 		teleportUses = 2
 	elif cause == "spikes":
 		ability = "sword"
+	elif cause == "enemy1":
+		ability = "dash"
 	velocity = Vector2.ZERO
 	position = checkpoint
 
