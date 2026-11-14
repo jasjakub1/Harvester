@@ -301,14 +301,18 @@ scale = Vector2(4.2400007, 4.2400007)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1153053723]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ei405")
-animation = &"idle"
-frame_progress = 0.8046017
+animation = &"run"
+frame = 12
+frame_progress = 0.05835958
 
 [node name="Area2D" type="Area2D" parent="Player" unique_id=876375900]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D" unique_id=1523870854]
 position = Vector2(-1, 2.5)
 shape = SubResource("RectangleShape2D_wtcfe")
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1919465233]
+position = Vector2(-0.9433961, 2.5943394)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1022575868]
 tile_set = SubResource("TileSet_0hol4")
