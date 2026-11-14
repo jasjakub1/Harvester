@@ -1,11 +1,11 @@
 extends CharacterBody2D
 
-const gravity = 100
-const acceleration = 20
+const gravity = 400
+const acceleration = 90
 const jump_height = 100
 var speed = 0
-const maxspeed = 50
-const decelleration = 20
+const maxspeed = 250
+const decelleration = 70
 
 @onready var animation = $AnimatedSprite2D
 
@@ -15,7 +15,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	
 	var direction = Input.get_axis("left", "right")
 	
@@ -30,6 +30,9 @@ func _physics_process(_delta: float) -> void:
 		animation.play("run")
 	else:
 		animation.play("idle")
+	
+	if not is_on_floor():
+		velocity.y += gravity * delta
 	
 	if direction:
 		speed = clamp(speed + direction * acceleration, -1 * maxspeed, maxspeed)

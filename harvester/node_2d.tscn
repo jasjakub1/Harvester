@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d3ymmwlphyp45"]
 
-[ext_resource type="Script" path="res://playercontroller.gd" id="1_epypp"]
+[ext_resource type="Script" uid="uid://bgyje0t0yxxq8" path="res://playercontroller.gd" id="1_epypp"]
 [ext_resource type="Texture2D" uid="uid://rlr80rcwoyus" path="res://Assets/knight.png" id="1_wtcfe"]
 [ext_resource type="Texture2D" uid="uid://cwvit4xufi4ev" path="res://Assets/world_tileset copy.png" id="2_0e48y"]
 
