@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const gravity = 1400
+const gravity = 1600
 const acceleration = 50
 var jump_height = 600
 var speed = 0
@@ -9,12 +9,12 @@ var maxspeed = 250
 const flightspeed = 200
 const decelleration = 40
 const dash_speed = 250
-var ability = "flight"
+var ability = "teleport"
 var teleportUses = 2
 var double_jump = true
 var isDashing = false
 var animation_buffer = 0
-var dashDistance = 70
+var dashDistance = 100
 @onready var checkpoint = position
 var isFlying = true
 var flyingTimer = 0
