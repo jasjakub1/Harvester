@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cxne71mq6xdtc" path="res://Code/ability.gd" id="5_85gyg"]
 [ext_resource type="FontFile" uid="uid://cf83s76qtwdet" path="res://Assets/PixeloidMono.ttf" id="6_c32x4"]
 [ext_resource type="Texture2D" uid="uid://cfvotcu3y0ci7" path="res://Assets/items_sheet copy.png" id="7_fg7i4"]
+[ext_resource type="Texture2D" uid="uid://dqc52326msrd" path="res://Assets/standard-bg.png" id="7_he4j0"]
 [ext_resource type="Script" uid="uid://cbgugq0tvlslv" path="res://Code/sword.gd" id="8_gwne5"]
 [ext_resource type="PackedScene" uid="uid://dkrdwkh0gqanl" path="res://prefabs/enemy.tscn" id="9_2ooml"]
 [ext_resource type="Script" uid="uid://b68t74b8i43av" path="res://Code/gameManager.gd" id="9_hpu6p"]
@@ -549,6 +550,14 @@ offset_bottom = 701.0
 text = "Wall Jump"
 label_settings = SubResource("LabelSettings_rj586")
 
+[node name="CanvasLayer2" type="CanvasLayer" parent="CharacterBody2D/Camera2D" unique_id=2125472964]
+layer = -11
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/Camera2D/CanvasLayer2" unique_id=46676158]
+position = Vector2(642, 363)
+scale = Vector2(4, 4)
+texture = ExtResource("7_he4j0")
+
 [node name="groundCheck" type="RayCast2D" parent="CharacterBody2D" unique_id=1911509374]
 target_position = Vector2(-23.333313, -41.666656)
 
@@ -577,10 +586,11 @@ shape = SubResource("RectangleShape2D_el1jj")
 script = ExtResource("9_hpu6p")
 
 [node name="Spikes" parent="." unique_id=2014851976 instance=ExtResource("10_op2xg")]
-position = Vector2(867, 162)
+position = Vector2(878, 225)
 
 [node name="enemy" parent="." unique_id=2088609816 instance=ExtResource("9_2ooml")]
-position = Vector2(689, 341)
+position = Vector2(1279, 160)
+metadata/ability_provided = "double jump"
 
 [node name="enemy2" parent="." unique_id=627473793 instance=ExtResource("9_2ooml")]
 metadata/ability_provided = "teleport"
