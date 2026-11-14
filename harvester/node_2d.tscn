@@ -266,7 +266,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_epypp")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]
-size = Vector2(12, 15)
+size = Vector2(12, 16.0849)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ei405"]
 atlas = ExtResource("1_wtcfe")
@@ -444,7 +444,7 @@ tile_set = SubResource("TileSet_0e48y")
 script = ExtResource("1_epypp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1523870854]
-position = Vector2(551.76, 280.6)
+position = Vector2(551.76, 282.9)
 scale = Vector2(4.2400007, 4.2400007)
 shape = SubResource("RectangleShape2D_wtcfe")
 
