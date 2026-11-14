@@ -60,7 +60,7 @@ func death(cause: String) -> void:
 		teleportUses = 2
 	elif cause == "spikes":
 		ability = "sword"
-	elif cause == "enemy1":
+	elif cause == "Dash":
 		ability = "dash"
 	velocity = Vector2.ZERO
 	position = checkpoint

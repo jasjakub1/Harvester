@@ -11,6 +11,7 @@ atlas = ExtResource("2_cypye")
 region = Rect2(220, 76, 56, 64)
 
 [node name="enemy" type="Node2D" unique_id=2088609816]
+metadata/ability_provided = "Dash"
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1345476268]
 collision_layer = 2
