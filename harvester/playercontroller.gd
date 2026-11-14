@@ -9,7 +9,7 @@ var maxspeed = 250
 const flightspeed = 200
 const decelleration = 40
 const dash_speed = 250
-var ability = "teleport"
+var ability = "dash"
 var teleportUses = 2
 var double_jump = true
 var isDashing = false
@@ -21,6 +21,7 @@ var flyingTimer = 0
 
 @onready var animation = $AnimatedSprite2D
 @onready var gameManager = $"../GameManager"
+@onready var ui = $"Camera2D/CanvasLayer/Ability"
 
 func death(cause: String) -> void:
 	if cause == "crush":
@@ -30,18 +31,22 @@ func death(cause: String) -> void:
 		teleportUses = 2
 	velocity = Vector2.ZERO
 	position = checkpoint
+	ui.update_ability()
 
 func _ready() -> void:
+	ui.update_ability()
 	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	
 	if flyingTimer <=0:
 		isFlying = false
 	else:
 		flyingTimer -= delta
+		if flyingTimer <= 0:
+			ability = "none"
+			ui.update_ability()
 	
 	if ability == "mini curse":
 		scale = Vector2(0.3, 0.3)
@@ -116,13 +121,17 @@ func _physics_process(delta: float) -> void:
 			position.x += -2 * (int(animation.flip_h)-0.5) * dashDistance
 			if not gameManager._has_exited_floor():
 				death("crush")
+			if teleportUses == 0:
+				ability = "none"
+				ui.update_ability()
 			
 	
 	if isDashing:
 		velocity = Vector2(-2*(int(animation.flip_h)-0.5) * dash_speed, 0)
 		if Input.is_action_just_released("ability"):
 			isDashing = false
-			ability = null
+			ability = "none"
+			ui.update_ability()
 	elif not isFlying:
 		velocity.x = speed
 	
