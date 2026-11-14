@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://d3ymmwlphyp45"]
+[gd_scene format=4 uid="uid://cts0kq3y25yii"]
 
 [ext_resource type="Texture2D" uid="uid://cwvit4xufi4ev" path="res://Assets/world_tileset copy.png" id="1_hvaui"]
 [ext_resource type="Script" uid="uid://bgyje0t0yxxq8" path="res://Code/playercontroller.gd" id="2_2ooml"]
@@ -7,11 +7,16 @@
 [ext_resource type="Script" uid="uid://cxne71mq6xdtc" path="res://Code/ability.gd" id="5_85gyg"]
 [ext_resource type="FontFile" uid="uid://cf83s76qtwdet" path="res://Assets/PixeloidMono.ttf" id="6_c32x4"]
 [ext_resource type="Texture2D" uid="uid://cfvotcu3y0ci7" path="res://Assets/items_sheet copy.png" id="7_fg7i4"]
+[ext_resource type="Texture2D" uid="uid://dqc52326msrd" path="res://Assets/standard-bg.png" id="7_p20hg"]
 [ext_resource type="Script" uid="uid://cbgugq0tvlslv" path="res://Code/sword.gd" id="8_gwne5"]
-[ext_resource type="PackedScene" uid="uid://dkrdwkh0gqanl" path="res://prefabs/enemy.tscn" id="9_2ooml"]
+[ext_resource type="PackedScene" uid="uid://xriqgxgua34p" path="res://prefabs/enemy.tscn" id="9_2ooml"]
 [ext_resource type="Script" uid="uid://b68t74b8i43av" path="res://Code/gameManager.gd" id="9_hpu6p"]
+<<<<<<< Updated upstream
 [ext_resource type="PackedScene" uid="uid://bn8fq8qhcmnu3" path="res://prefabs/spikes.tscn" id="10_op2xg"]
 [ext_resource type="Texture2D" uid="uid://mji4ud0uegpm" path="res://Assets/pixil-frame-0 (2).png" id="12_p20hg"]
+=======
+[ext_resource type="PackedScene" uid="uid://bghw7gssu5k8t" path="res://prefabs/spikes.tscn" id="10_op2xg"]
+>>>>>>> Stashed changes
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_epypp"]
 texture = ExtResource("1_hvaui")
@@ -548,6 +553,15 @@ offset_right = 478.0
 offset_bottom = 701.0
 text = "Wall Jump"
 label_settings = SubResource("LabelSettings_rj586")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="CharacterBody2D/Camera2D" unique_id=1993433347]
+layer = -1
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/Camera2D/CanvasLayer2" unique_id=33235808]
+texture_filter = 1
+position = Vector2(642, 356)
+scale = Vector2(4, 4)
+texture = ExtResource("7_p20hg")
 
 [node name="groundCheck" type="RayCast2D" parent="CharacterBody2D" unique_id=1911509374]
 target_position = Vector2(-23.333313, -41.666656)
