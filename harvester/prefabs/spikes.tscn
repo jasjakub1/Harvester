@@ -7,6 +7,7 @@
 size = Vector2(166, 47)
 
 [node name="Spikes" type="Node2D" unique_id=2014851976]
+scale = Vector2(0.5, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=769839036]
 texture_filter = 1
