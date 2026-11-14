@@ -29,7 +29,9 @@ func _physics_process(delta: float) -> void:
 		elif direction < 0:
 			animation.flip_h = true
 	
-	if not is_on_floor():
+	if isDashing:
+		animation.play("dash")
+	elif not is_on_floor():
 		animation.play("fall")
 	elif direction != 0:
 		animation.play("run")
