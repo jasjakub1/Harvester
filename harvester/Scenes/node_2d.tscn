@@ -1,11 +1,13 @@
 [gd_scene format=4 uid="uid://d3ymmwlphyp45"]
 
-[ext_resource type="Script" uid="uid://bgyje0t0yxxq8" path="res://playercontroller.gd" id="1_epypp"]
+[ext_resource type="Script" uid="uid://bgyje0t0yxxq8" path="res://Code/playercontroller.gd" id="1_epypp"]
 [ext_resource type="Texture2D" uid="uid://rlr80rcwoyus" path="res://Assets/knight.png" id="1_wtcfe"]
 [ext_resource type="Texture2D" uid="uid://cwvit4xufi4ev" path="res://Assets/world_tileset copy.png" id="2_0e48y"]
-[ext_resource type="Script" uid="uid://b68t74b8i43av" path="res://gameManager.gd" id="4_0hol4"]
+[ext_resource type="Script" uid="uid://b68t74b8i43av" path="res://Code/gameManager.gd" id="4_0hol4"]
 [ext_resource type="Texture2D" uid="uid://b57seo1k8s5ow" path="res://Assets/pixil-frame-0.png" id="4_q6r6c"]
-[ext_resource type="Script" uid="uid://cxne71mq6xdtc" path="res://ability.gd" id="5_kdubu"]
+[ext_resource type="Script" uid="uid://cxne71mq6xdtc" path="res://Code/ability.gd" id="5_kdubu"]
+[ext_resource type="FontFile" uid="uid://cf83s76qtwdet" path="res://Assets/PixeloidMono.ttf" id="6_d21ai"]
+[ext_resource type="PackedScene" uid="uid://bn8fq8qhcmnu3" path="res://prefabs/spikes.tscn" id="8_rj586"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_epypp"]
 texture = ExtResource("2_0e48y")
@@ -269,7 +271,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_epypp")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]
-size = Vector2(12, 15.723251)
+size = Vector2(12, 19.654102)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e8dv2"]
 atlas = ExtResource("1_wtcfe")
@@ -473,6 +475,11 @@ animations = [{
 atlas = ExtResource("4_q6r6c")
 region = Rect2(64, 16, 16, 16)
 
+[sub_resource type="LabelSettings" id="LabelSettings_rj586"]
+font = ExtResource("6_d21ai")
+font_size = 32
+font_color = Color(0, 0, 0, 1)
+
 [node name="Node2D" type="Node2D" unique_id=2061195877]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1022575868]
@@ -488,7 +495,7 @@ scale = Vector2(0.6, 0.6)
 script = ExtResource("1_epypp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1523870854]
-position = Vector2(0, 13.333405)
+position = Vector2(0, 5.0000305)
 scale = Vector2(4.2400007, 4.2400007)
 shape = SubResource("RectangleShape2D_wtcfe")
 
@@ -522,5 +529,23 @@ position = Vector2(81.999985, 624)
 scale = Vector2(7, 7)
 texture = SubResource("AtlasTexture_1fr6y")
 
+[node name="AbilityDescription" type="Label" parent="CharacterBody2D/Camera2D/CanvasLayer" unique_id=1462747691]
+texture_filter = 1
+offset_left = 286.0
+offset_top = 642.0
+offset_right = 478.0
+offset_bottom = 701.0
+text = "Wall Jump"
+label_settings = SubResource("LabelSettings_rj586")
+
+[node name="groundCheck" type="RayCast2D" parent="CharacterBody2D" unique_id=1911509374]
+target_position = Vector2(-23.333313, -41.666656)
+
+[node name="groundCheck2" type="RayCast2D" parent="CharacterBody2D" unique_id=162974557]
+target_position = Vector2(25, -40)
+
 [node name="GameManager" type="Node2D" parent="." unique_id=228561549]
 script = ExtResource("4_0hol4")
+
+[node name="Spikes" parent="." unique_id=2014851976 instance=ExtResource("8_rj586")]
+position = Vector2(867, 162)

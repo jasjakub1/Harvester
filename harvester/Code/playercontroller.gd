@@ -9,7 +9,7 @@ var maxspeed = 250
 const flightspeed = 200
 const decelleration = 40
 const dash_speed = 250
-var ability = "dash"
+var ability = "gravity"
 var teleportUses = 2
 var double_jump = true
 var isDashing = false
@@ -18,10 +18,34 @@ var dashDistance = 100
 @onready var checkpoint = position
 var isFlying = true
 var flyingTimer = 0
+var flipped = false
+var vertMult = -1
+var gravityUses = 2
 
+@onready var groundCheck = $groundCheck
+@onready var groundCheck2 = $groundCheck2
 @onready var animation = $AnimatedSprite2D
 @onready var gameManager = $"../GameManager"
 @onready var ui = $"Camera2D/CanvasLayer/Ability"
+
+func grounded() -> bool:
+	if flipped:
+		var grounded = false
+		vertMult = 1
+		animation.flip_v = true
+		if groundCheck.is_colliding():
+			var collider = groundCheck.get_collider()
+			if collider.name == "TileMapLayer":
+				grounded = true
+		if groundCheck2.is_colliding():
+			var collider = groundCheck2.get_collider()
+			if collider.name == "TileMapLayer":
+				grounded = true
+		return grounded
+	else:
+		vertMult = -1
+		animation.flip_v = false
+		return is_on_floor()
 
 func death(cause: String) -> void:
 	if cause == "crush":
@@ -29,24 +53,25 @@ func death(cause: String) -> void:
 	elif cause == "sky":
 		ability = "teleport"
 		teleportUses = 2
+	elif cause == "spikes":
+		ability = "sword"
 	velocity = Vector2.ZERO
 	position = checkpoint
-	ui.update_ability()
 
 func _ready() -> void:
-	ui.update_ability()
 	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	grounded()
+	ui.update_ability()
 	if flyingTimer <=0:
 		isFlying = false
 	else:
 		flyingTimer -= delta
 		if flyingTimer <= 0:
 			ability = "none"
-			ui.update_ability()
 	
 	if ability == "mini curse":
 		scale = Vector2(0.3, 0.3)
@@ -70,7 +95,7 @@ func _physics_process(delta: float) -> void:
 	if not animation_buffer:
 		if isDashing:
 			animation.play("dash")
-		elif not is_on_floor():
+		elif not grounded():
 			animation.play("fall")
 		elif direction != 0:
 			animation.play("run")
@@ -79,18 +104,18 @@ func _physics_process(delta: float) -> void:
 	else:
 		animation_buffer -= 1
 	
-	if not is_on_floor():
-		velocity.y += gravity * delta
+	if not grounded():
+		velocity.y -= gravity * delta * vertMult
 		
 	if Input.is_action_just_pressed("jump"):
-		if is_on_floor():
-			velocity.y = -1 * jump_height
+		if grounded():
+			velocity.y = vertMult * jump_height
 		elif (ability == "double jump") and (double_jump == true):
-			velocity.y = -1 * jump_height
+			velocity.y = vertMult * jump_height
 			double_jump = false
 			animation.play("dash", 3.0)
 			animation_buffer = 16
-	if is_on_floor():
+	if grounded():
 		double_jump = true
 	if not isFlying:
 		if direction:
@@ -107,11 +132,16 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("ability"):
 		
-		if ability == "flight":
+		if (ability == "flight") and not isFlying:
 			isFlying = true
 			flyingTimer = 3
 			speed = 0
-			ability = null
+		
+		if ability == "gravity":
+			flipped = not flipped
+			gravityUses -= 1
+			if gravityUses == 0:
+				ability = "none"
 		
 		if ability == "dash":
 			isDashing = true
@@ -123,7 +153,6 @@ func _physics_process(delta: float) -> void:
 				death("crush")
 			if teleportUses == 0:
 				ability = "none"
-				ui.update_ability()
 			
 	
 	if isDashing:
@@ -131,7 +160,6 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_released("ability"):
 			isDashing = false
 			ability = "none"
-			ui.update_ability()
 	elif not isFlying:
 		velocity.x = speed
 	
