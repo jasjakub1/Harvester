@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-const gravity = 400
+const gravity = 1400
 const acceleration = 90
-const jump_height = 100
+const jump_height = 600
 var speed = 0
 const maxspeed = 250
 const decelleration = 70
@@ -33,6 +33,9 @@ func _physics_process(delta: float) -> void:
 	
 	if not is_on_floor():
 		velocity.y += gravity * delta
+		
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = -1 * jump_height
 	
 	if direction:
 		speed = clamp(speed + direction * acceleration, -1 * maxspeed, maxspeed)
@@ -40,7 +43,7 @@ func _physics_process(delta: float) -> void:
 		speed -= decelleration
 	elif speed < 0:
 		speed += decelleration
-	if abs(speed) < 5:
+	if abs(speed) < 40:
 		speed = 0
 	
 	velocity.x = speed
