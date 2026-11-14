@@ -582,6 +582,12 @@ physics_interpolation_mode = 2
 position = Vector2(15, 0)
 shape = SubResource("RectangleShape2D_el1jj")
 
+[node name="wallCheckRight" type="RayCast2D" parent="CharacterBody2D" unique_id=1773213466]
+target_position = Vector2(31.666687, 38.333344)
+
+[node name="wallCheckLeft" type="RayCast2D" parent="CharacterBody2D" unique_id=626303171]
+target_position = Vector2(-31.666687, 35)
+
 [node name="GameManager" type="Node2D" parent="." unique_id=228561549]
 script = ExtResource("9_hpu6p")
 

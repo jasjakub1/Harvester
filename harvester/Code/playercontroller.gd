@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const gravity = 1600
+var gravity = 1600
 const acceleration = 50
 var jump_height = 600
 var speed = 0
@@ -9,7 +9,7 @@ var maxspeed = 250
 const flightspeed = 200
 const decelleration = 40
 const dash_speed = 250
-var ability = "none"
+var ability = "wall jump"
 var teleportUses = 2
 var double_jump = true
 var isDashing = false
@@ -21,9 +21,12 @@ var flyingTimer = 0
 var flipped = false
 var vertMult = -1
 var gravityUses = 2
+var wall_jump_velocity = 0
 
 @onready var groundCheck = $groundCheck
 @onready var groundCheck2 = $groundCheck2
+@onready var wallLeft = $wallCheckLeft
+@onready var wallRight = $groundCheck2
 @onready var animation = $AnimatedSprite2D
 @onready var gameManager = $"../GameManager"
 @onready var ui = $"Camera2D/CanvasLayer/Ability"
@@ -126,6 +129,31 @@ func _physics_process(delta: float) -> void:
 			double_jump = false
 			animation.play("dash", 3.0)
 			animation_buffer = 16
+	if ability == "wall jump":
+		if wallLeft.is_colliding():
+			if wallLeft.get_collider().name == "TileMapLayer":
+				wall_jump_velocity = 0
+				if velocity.y >= 0:
+					gravity = 400
+					velocity.y = clamp(velocity.y, -20000, 100)
+				else:
+					gravity = 1600
+				if Input.is_action_just_pressed("jump"):	
+					velocity.y = vertMult * jump_height * 1
+					wall_jump_velocity = 500
+		elif wallRight.is_colliding():
+			if wallRight.get_collider().name == "TileMapLayer":
+				wall_jump_velocity = 0
+				if velocity.y >= 0:
+					gravity = 400
+					velocity.y = clamp(velocity.y, -20000, 100)
+				else:
+					gravity = 1600
+				if Input.is_action_just_pressed("jump"):	
+					velocity.y = vertMult * jump_height * 1
+					wall_jump_velocity = -500
+		else:
+			gravity = 1600
 	if grounded():
 		double_jump = true
 	if not isFlying:
@@ -173,5 +201,10 @@ func _physics_process(delta: float) -> void:
 			ability = "none"
 	elif not isFlying:
 		velocity.x = speed
+		velocity.x += wall_jump_velocity
+		if wall_jump_velocity > 0:
+			wall_jump_velocity -= 10
+		if wall_jump_velocity < 0:
+			wall_jump_velocity += 10
 	
 	move_and_slide()
