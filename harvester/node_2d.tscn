@@ -456,3 +456,6 @@ position = Vector2(556, 270)
 scale = Vector2(4.2400007, 4.2400007)
 sprite_frames = SubResource("SpriteFrames_ei405")
 animation = &"fall"
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=931256780]
+position = Vector2(551, 281)
