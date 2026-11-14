@@ -13,6 +13,7 @@ config_version=5
 config/name="Harvester"
 run/main_scene="uid://d3ymmwlphyp45"
 config/features=PackedStringArray("4.6", "Forward Plus")
+config/icon="res://icon.svg"
 
 [input]
 
