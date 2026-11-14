@@ -266,7 +266,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_epypp")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]
-size = Vector2(12, 15)
+size = Vector2(12, 18.506287)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e8dv2"]
 atlas = ExtResource("1_wtcfe")
@@ -479,6 +479,7 @@ scale = Vector2(0.6, 0.6)
 script = ExtResource("1_epypp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1523870854]
+position = Vector2(0, 7.433319)
 scale = Vector2(4.2400007, 4.2400007)
 shape = SubResource("RectangleShape2D_wtcfe")
 
@@ -486,7 +487,7 @@ shape = SubResource("RectangleShape2D_wtcfe")
 texture_filter = 1
 scale = Vector2(4.2400007, 4.2400007)
 sprite_frames = SubResource("SpriteFrames_ei405")
-animation = &"dash"
+animation = &"fall"
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=931256780]
 position = Vector2(1.6666665, -8.333333)
