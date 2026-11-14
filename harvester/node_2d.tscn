@@ -459,3 +459,15 @@ animation = &"fall"
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=931256780]
 position = Vector2(551, 281)
+
+[node name="floorvoid" type="Node2D" parent="." unique_id=607964203]
+
+[node name="floor" type="Area2D" parent="floorvoid" unique_id=706417223]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="floorvoid/floor" unique_id=2097028452]
+
+[node name="ceilingvoid" type="Node2D" parent="." unique_id=194277906]
+
+[node name="ceiling" type="Area2D" parent="ceilingvoid" unique_id=697143399]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ceilingvoid/ceiling" unique_id=78711606]
