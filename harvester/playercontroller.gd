@@ -2,19 +2,22 @@ extends CharacterBody2D
 
 const gravity = 1400
 const acceleration = 50
-const jump_height = 600
+var jump_height = 600
 var speed = 0
 var nograv = false
-const maxspeed = 250
+var maxspeed = 250
+const flightspeed = 200
 const decelleration = 40
 const dash_speed = 250
-var ability = "double jump"
+var ability = "flight"
 var teleportUses = 2
 var double_jump = true
 var isDashing = false
 var animation_buffer = 0
 var dashDistance = 70
-var checkpoint = null
+@onready var checkpoint = position
+var isFlying = true
+var flyingTimer = 0
 
 @onready var animation = $AnimatedSprite2D
 @onready var gameManager = $"../GameManager"
@@ -34,6 +37,20 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	
+	if flyingTimer <=0:
+		isFlying = false
+	else:
+		flyingTimer -= delta
+	
+	if ability == "mini curse":
+		scale = Vector2(0.3, 0.3)
+		maxspeed = 100
+		jump_height = 300
+	else:
+		scale = Vector2(0.6,0.6)
+		maxspeed = 250
+		jump_height = 600
 	
 	if Input.is_action_just_pressed("checkpoint"):
 		checkpoint = position
@@ -70,17 +87,26 @@ func _physics_process(delta: float) -> void:
 			animation_buffer = 16
 	if is_on_floor():
 		double_jump = true
-	
-	if direction:
-		speed = clamp(speed + direction * acceleration, -1 * maxspeed, maxspeed)
-	elif speed > 0:
-		speed -= decelleration
-	elif speed < 0:
-		speed += decelleration
-	if abs(speed) < 40:
-		speed = 0
+	if not isFlying:
+		if direction:
+			speed = clamp(speed + direction * acceleration, -1 * maxspeed, maxspeed)
+		elif speed > 0:
+			speed -= decelleration
+		elif speed < 0:
+			speed += decelleration
+		if abs(speed) < 40:
+			speed = 0
+	if isFlying:
+		var vertDirection = Input.get_axis("up", "down")
+		velocity = Vector2(direction, vertDirection) * flightspeed
 	
 	if Input.is_action_just_pressed("ability"):
+		
+		if ability == "flight":
+			isFlying = true
+			flyingTimer = 3
+			speed = 0
+			ability = null
 		
 		if ability == "dash":
 			isDashing = true
@@ -97,7 +123,7 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_released("ability"):
 			isDashing = false
 			ability = null
-	else:
+	elif not isFlying:
 		velocity.x = speed
 	
 	move_and_slide()
