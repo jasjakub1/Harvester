@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://d3ymmwlphyp45"]
+[gd_scene format=4 uid="uid://d3ymmwlphyp45"]
 
 [ext_resource type="Script" uid="uid://bgyje0t0yxxq8" path="res://playercontroller.gd" id="1_epypp"]
 [ext_resource type="Texture2D" uid="uid://rlr80rcwoyus" path="res://Assets/knight.png" id="1_wtcfe"]
@@ -435,11 +435,9 @@ animations = [{
 
 [node name="Node2D" type="Node2D" unique_id=2061195877]
 
-[node name="Player" type="Node2D" parent="." unique_id=621548514]
-position = Vector2(556, 270)
-scale = Vector2(4.2400007, 4.2400007)
-
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1022575868]
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAAIAAwAAAAAAAAAAAAJAAwAAAAAAAAAAAAKAAwAAAAAAAAAAAALAAwAAAAAAAAAAAAMAAwAAAAAAAAAAAANAAwAAAAAAAAAAAAOAAwAAAAAAAAAAAAPAAwAAAAAAAAAAAAQAAwAAAAAAAAAAAARAAwAAAAAAAAAAAASAAwAAAAAAAAAAAATAAwAAAAAAAAAAAAUAAwAAAAAAAAAAAAVAAwAAAAAAAAAAAAWAAwAAAAAAAAAAAAXAAwAAAAAAAAAAAAXAAkAAAAAAAAAAAAXAAoAAAAAAAAAAAAXAAsAAAAAAAAAAAAYAAkAAAAAAAAAAAAZAAkAAAAAAAAAAAAaAAkAAAAAAAAAAAAbAAkAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_0e48y")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1810607393]
