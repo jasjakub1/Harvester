@@ -441,19 +441,20 @@ tile_map_data = PackedByteArray("AAAIAAwAAAAAAAAAAAAJAAwAAAAAAAAAAAAKAAwAAAAAAAA
 tile_set = SubResource("TileSet_0e48y")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1810607393]
+position = Vector2(470, 185)
+scale = Vector2(0.6, 0.6)
 script = ExtResource("1_epypp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1523870854]
-position = Vector2(551.76, 280.6)
 scale = Vector2(4.2400007, 4.2400007)
 shape = SubResource("RectangleShape2D_wtcfe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=1153053723]
 texture_filter = 1
-position = Vector2(556, 270)
 scale = Vector2(4.2400007, 4.2400007)
 sprite_frames = SubResource("SpriteFrames_ei405")
 animation = &"fall"
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=931256780]
-position = Vector2(551, 281)
+position = Vector2(1.6666665, -8.333333)
+drag_horizontal_enabled = true
