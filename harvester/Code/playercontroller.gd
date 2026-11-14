@@ -47,7 +47,7 @@ func grounded() -> bool:
 		animation.flip_v = false
 		return is_on_floor()
 
-func death(cause: String) -> void:
+func death(cause: String, override = false) -> void:
 	isDashing = false
 	isFlying = false
 	flyingTimer = 0
@@ -57,11 +57,14 @@ func death(cause: String) -> void:
 		ability = "double jump"
 	elif cause == "sky":
 		ability = "teleport"
-		teleportUses = 2
 	elif cause == "spikes":
 		ability = "sword"
-	elif cause == "Dash":
-		ability = "dash"
+	if override:
+		ability = cause
+	if ability == "gravity":
+		gravityUses = 2
+	if ability == "teleport":
+		teleportUses = 2
 	velocity = Vector2.ZERO
 	position = checkpoint
 

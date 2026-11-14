@@ -10,4 +10,4 @@ func eliminate() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body == playerNode and danger:
-		playerNode.death($"..".get_meta("ability_provided"))
+		playerNode.death($"..".get_meta("ability_provided"), true)
