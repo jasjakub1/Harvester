@@ -7,6 +7,8 @@ var speed = 0
 const maxspeed = 50
 const decelleration = 20
 
+@onready var animation = $AnimatedSprite2D
+
 
 func _ready() -> void:
 	pass
@@ -16,6 +18,18 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	
 	var direction = Input.get_axis("left", "right")
+	
+	if direction > 0:
+		animation.flip_h = false
+	elif direction < 0:
+		animation.flip_h = true
+	
+	if not is_on_floor():
+		animation.play("fall")
+	elif direction != 0:
+		animation.play("run")
+	else:
+		animation.play("idle")
 	
 	if direction:
 		speed = clamp(speed + direction * acceleration, -1 * maxspeed, maxspeed)

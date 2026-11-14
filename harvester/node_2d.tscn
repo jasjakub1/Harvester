@@ -140,6 +140,10 @@ sources/1 = SubResource("TileSetAtlasSource_epypp")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]
 size = Vector2(12, 15)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ei405"]
+atlas = ExtResource("1_wtcfe")
+region = Rect2(0, 192, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_0e48y"]
 atlas = ExtResource("1_wtcfe")
 region = Rect2(0, 0, 32, 32)
@@ -222,6 +226,14 @@ region = Rect2(224, 96, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ei405"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ei405")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0e48y")
@@ -315,5 +327,4 @@ texture_filter = 1
 position = Vector2(556, 270)
 scale = Vector2(4.2400007, 4.2400007)
 sprite_frames = SubResource("SpriteFrames_ei405")
-animation = &"idle"
-frame_progress = 0.8046017
+animation = &"fall"
