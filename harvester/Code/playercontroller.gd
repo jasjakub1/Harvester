@@ -26,7 +26,7 @@ var wall_jump_velocity = 0
 @onready var groundCheck = $groundCheck
 @onready var groundCheck2 = $groundCheck2
 @onready var wallLeft = $wallCheckLeft
-@onready var wallRight = $groundCheck2
+@onready var wallRight = $wallCheckRight
 @onready var animation = $AnimatedSprite2D
 @onready var gameManager = $"../GameManager"
 @onready var ui = $"Camera2D/CanvasLayer/Ability"
@@ -129,29 +129,31 @@ func _physics_process(delta: float) -> void:
 			double_jump = false
 			animation.play("dash", 3.0)
 			animation_buffer = 16
+	var slowgrav = false
 	if ability == "wall jump":
 		if wallLeft.is_colliding():
 			if wallLeft.get_collider().name == "TileMapLayer":
 				wall_jump_velocity = 0
 				if velocity.y >= 0:
-					gravity = 400
-					velocity.y = clamp(velocity.y, -20000, 100)
+					slowgrav = true
 				else:
-					gravity = 1600
+					slowgrav = false
 				if Input.is_action_just_pressed("jump"):	
 					velocity.y = vertMult * jump_height * 1
 					wall_jump_velocity = 500
-		elif wallRight.is_colliding():
+		if wallRight.is_colliding():
 			if wallRight.get_collider().name == "TileMapLayer":
 				wall_jump_velocity = 0
 				if velocity.y >= 0:
-					gravity = 400
-					velocity.y = clamp(velocity.y, -20000, 100)
+					slowgrav = true
 				else:
-					gravity = 1600
+					slowgrav = false
 				if Input.is_action_just_pressed("jump"):	
 					velocity.y = vertMult * jump_height * 1
 					wall_jump_velocity = -500
+		if slowgrav:
+			gravity = 400
+			velocity.y = clamp(velocity.y, -20000, 100)
 		else:
 			gravity = 1600
 	if grounded():
