@@ -155,16 +155,24 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]
+size = Vector2(12, 15)
+
 [node name="Node2D" type="Node2D" unique_id=2061195877]
 
 [node name="Player" type="Node2D" parent="." unique_id=621548514]
+position = Vector2(556, 270)
+scale = Vector2(4.2400007, 4.2400007)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1153053723]
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ei405")
 animation = &"run"
 
 [node name="Area2D" type="Area2D" parent="Player" unique_id=876375900]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D" unique_id=1523870854]
+position = Vector2(-1, 2.5)
+shape = SubResource("RectangleShape2D_wtcfe")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1022575868]
