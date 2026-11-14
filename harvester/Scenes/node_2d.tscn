@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cxne71mq6xdtc" path="res://Code/ability.gd" id="5_85gyg"]
 [ext_resource type="FontFile" uid="uid://cf83s76qtwdet" path="res://Assets/PixeloidMono.ttf" id="6_c32x4"]
 [ext_resource type="Texture2D" uid="uid://cfvotcu3y0ci7" path="res://Assets/items_sheet copy.png" id="7_fg7i4"]
+[ext_resource type="Shader" uid="uid://5ffl27r0n2uy" path="res://Scenes/glow.gdshader" id="7_he4j0"]
 [ext_resource type="Script" uid="uid://cbgugq0tvlslv" path="res://Code/sword.gd" id="8_gwne5"]
 [ext_resource type="PackedScene" uid="uid://dkrdwkh0gqanl" path="res://prefabs/enemy.tscn" id="9_2ooml"]
 [ext_resource type="Script" uid="uid://b68t74b8i43av" path="res://Code/gameManager.gd" id="9_hpu6p"]
@@ -484,6 +485,12 @@ font = ExtResource("6_c32x4")
 font_size = 32
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_85gyg"]
+shader = ExtResource("7_he4j0")
+shader_parameter/bloomRadius = 1.0
+shader_parameter/bloomThreshold = 1.0
+shader_parameter/bloomIntensity = 1.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_1nvmp"]
 atlas = ExtResource("7_fg7i4")
 region = Rect2(48, 0, 16, 16)
@@ -549,6 +556,17 @@ offset_bottom = 701.0
 text = "Wall Jump"
 label_settings = SubResource("LabelSettings_rj586")
 
+[node name="Ability2" type="Sprite2D" parent="CharacterBody2D/Camera2D/CanvasLayer" unique_id=1695218035]
+z_index = 1
+texture_filter = 1
+material = SubResource("ShaderMaterial_85gyg")
+position = Vector2(1720, 4992)
+scale = Vector2(49, 49)
+texture = ExtResource("4_he4j0")
+hframes = 5
+vframes = 2
+script = ExtResource("5_85gyg")
+
 [node name="groundCheck" type="RayCast2D" parent="CharacterBody2D" unique_id=1911509374]
 target_position = Vector2(-23.333313, -41.666656)
 
@@ -589,9 +607,3 @@ metadata/ability_provided = "teleport"
 texture_filter = 1
 scale = Vector2(2, 2)
 texture = ExtResource("12_p20hg")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1974338825]
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=434805404]
-offset_right = 40.0
-offset_bottom = 40.0
