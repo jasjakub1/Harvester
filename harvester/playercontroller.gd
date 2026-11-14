@@ -8,9 +8,10 @@ var nograv = false
 const maxspeed = 250
 const decelleration = 40
 const dash_speed = 250
-var ability = "dash"
+var ability = "double jump"
 var double_jump = true
 var isDashing = false
+var animation_buffer = 0
 
 @onready var animation = $AnimatedSprite2D
 
@@ -28,15 +29,18 @@ func _physics_process(delta: float) -> void:
 			animation.flip_h = false
 		elif direction < 0:
 			animation.flip_h = true
-	
-	if isDashing:
-		animation.play("dash")
-	elif not is_on_floor():
-		animation.play("fall")
-	elif direction != 0:
-		animation.play("run")
+			
+	if not animation_buffer:
+		if isDashing:
+			animation.play("dash")
+		elif not is_on_floor():
+			animation.play("fall")
+		elif direction != 0:
+			animation.play("run")
+		else:
+			animation.play("idle")
 	else:
-		animation.play("idle")
+		animation_buffer -= 1
 	
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -47,6 +51,8 @@ func _physics_process(delta: float) -> void:
 		elif (ability == "double jump") and (double_jump == true):
 			velocity.y = -1 * jump_height
 			double_jump = false
+			animation.play("dash", 3.0)
+			animation_buffer = 16
 	if is_on_floor():
 		double_jump = true
 	
