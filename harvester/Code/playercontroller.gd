@@ -9,8 +9,7 @@ var maxspeed = 250
 const flightspeed = 200
 const decelleration = 40
 const dash_speed = 250
-var ability = "wall jump"
-var teleportUses = 2
+var ability = "none"
 var double_jump = true
 var isDashing = false
 var animation_buffer = 0
@@ -68,8 +67,6 @@ func death(cause: String, override = false) -> void:
 		ability = cause
 	if ability == "gravity":
 		gravityUses = 2
-	if ability == "teleport":
-		teleportUses = 2
 	velocity = Vector2.ZERO
 	
 	pop.fadeout()
@@ -200,13 +197,11 @@ func _physics_process(delta: float) -> void:
 		if ability == "dash":
 			isDashing = true
 			
-		if (ability == "teleport") and teleportUses != 0:
-			teleportUses -= 1
+		if ability == "teleport":
 			position.x += -2 * (int(animation.flip_h)-0.5) * dashDistance
 			if not gameManager._has_exited_floor():
 				death("crush")
-			if teleportUses == 0:
-				ability = "none"
+			ability = "none"
 			
 	
 	if isDashing:
