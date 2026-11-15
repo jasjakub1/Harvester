@@ -13,7 +13,7 @@ var ability = "flight"
 var double_jump = true
 var isDashing = false
 var animation_buffer = 0
-var dashDistance = 100
+var dashDistance = 120
 @onready var checkpoint = position
 var isFlying = true
 var flyingTimer = 0
@@ -182,14 +182,14 @@ func _physics_process(delta: float) -> void:
 			speed = 0
 	if isFlying:
 		var vertDirection = Input.get_axis("up", "down")
-		velocity = Vector2(direction, vertDirection) * flightspeed
+		velocity = Vector2(0.5*direction, 0.7*vertDirection) * flightspeed
 	
 	if Input.is_action_just_pressed("ability"):
 		
 		if (ability == "flight") and not isFlying:
 			isFlying = true
 			movement_enabled = false
-			flyingTimer = 3
+			flyingTimer = 2
 			speed = 0
 		
 		if ability == "gravity":
@@ -204,9 +204,9 @@ func _physics_process(delta: float) -> void:
 			
 		if ability == "teleport":
 			position.x += -2 * (int(animation.flip_h)-0.5) * dashDistance
+			ability = "none"
 			if not gameManager._has_exited_floor():
 				death("crush")
-			ability = "none"
 			
 	
 	if isDashing:
