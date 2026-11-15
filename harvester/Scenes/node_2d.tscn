@@ -11,10 +11,16 @@
 [ext_resource type="Script" uid="uid://cbgugq0tvlslv" path="res://Code/sword.gd" id="8_gwne5"]
 [ext_resource type="PackedScene" uid="uid://dkrdwkh0gqanl" path="res://prefabs/enemy.tscn" id="9_2ooml"]
 [ext_resource type="Script" uid="uid://b68t74b8i43av" path="res://Code/gameManager.gd" id="9_hpu6p"]
+[ext_resource type="AudioStream" uid="uid://3wp1hhy7kusj" path="res://Assets/dragon-studio-power-off-386180.mp3" id="9_uu23e"]
+[ext_resource type="Script" uid="uid://tiop1my01uev" path="res://Scenes/audio_stream_player_2d.gd" id="10_ny2ev"]
 [ext_resource type="PackedScene" uid="uid://bn8fq8qhcmnu3" path="res://prefabs/spikes.tscn" id="10_op2xg"]
+[ext_resource type="AudioStream" uid="uid://wr14jfflu4vk" path="res://Assets/ribhavagrawal-power-up-type-1-230548.mp3" id="11_jiy1d"]
 [ext_resource type="Texture2D" uid="uid://mji4ud0uegpm" path="res://Assets/pixil-frame-0 (2).png" id="12_p20hg"]
+[ext_resource type="Script" uid="uid://bpvif4lcjwfta" path="res://Scenes/power_up_player.gd" id="12_ud1os"]
 [ext_resource type="Texture2D" uid="uid://c32klmhw22a5c" path="res://Assets/Basic 4x.png" id="13_85gyg"]
+[ext_resource type="AudioStream" uid="uid://c8d1at8f1ty1n" path="res://Assets/monume-retro-arcade-game-music-629809.mp3" id="13_fpmp2"]
 [ext_resource type="Script" uid="uid://but0jw8iemjgb" path="res://Scenes/fade.gd" id="14_85gyg"]
+[ext_resource type="Script" uid="uid://ble4bg3h72u0a" path="res://Scenes/music.gd" id="14_xiv05"]
 [ext_resource type="Script" uid="uid://0tuw84h7s3n6" path="res://Scenes/pop.gd" id="15_c32x4"]
 [ext_resource type="PackedScene" uid="uid://de0abo88arx75" path="res://prefabs/bottom.tscn" id="17_gwne5"]
 
@@ -594,6 +600,20 @@ target_position = Vector2(28.333313, 36.666687)
 [node name="wallCheckLeft" type="RayCast2D" parent="CharacterBody2D" unique_id=626303171]
 target_position = Vector2(-31.666687, 35)
 
+[node name="powerDown" type="AudioStreamPlayer2D" parent="CharacterBody2D" unique_id=1072322679]
+position = Vector2(-803.3333, -578.3333)
+scale = Vector2(1.6666666, 1.6666666)
+stream = ExtResource("9_uu23e")
+script = ExtResource("10_ny2ev")
+
+[node name="powerUp" type="AudioStreamPlayer2D" parent="CharacterBody2D" unique_id=1889789641]
+stream = ExtResource("11_jiy1d")
+script = ExtResource("12_ud1os")
+
+[node name="music" type="AudioStreamPlayer2D" parent="CharacterBody2D" unique_id=1460081213]
+stream = ExtResource("13_fpmp2")
+script = ExtResource("14_xiv05")
+
 [node name="GameManager" type="Node2D" parent="." unique_id=228561549]
 script = ExtResource("9_hpu6p")
 
@@ -723,3 +743,5 @@ metadata/ability_provided = "teleport"
 
 [node name="Sprite2D" type="Sprite2D" parent="enemy3" unique_id=59278255]
 texture = SubResource("AtlasTexture_gwne5")
+
+[connection signal="ready" from="CharacterBody2D/music" to="CharacterBody2D" method="_on_music_ready"]

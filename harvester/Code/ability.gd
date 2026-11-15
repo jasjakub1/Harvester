@@ -3,7 +3,7 @@ extends Sprite2D
 var abilities = ["wall jump", "sword", "dash", "none", "double jump", "gravity", "flight", "teleport", "mini curse", "none"]
 
 func update_ability() -> void:
-	var textList = ["Wall Jump", "Sword", "Dash, 1 use remaining", "", "Double Jump", "Reverse Gravity, " + str(playerscript.gravityUses) + " use(s) remaining", "Free Flight, " + str(int(playerscript.isFlying) * int(ceil(playerscript.flyingTimer)) + 3 * int(not playerscript.isFlying)) + " second(s) left", "Teleport, 1 use left", "Cursed! Smaller Size!", ""]
+	var textList = ["Wall Jump", "Sword", "Dash, 1 use remaining", "", "Double Jump", "Reverse Gravity, " + str(playerscript.gravityUses) + " use(s) remaining", "Free Flight, " + str(int(playerscript.isFlying) * int(ceil(playerscript.flyingTimer)) + 2 * int(not playerscript.isFlying)) + " second(s) left", "Teleport, 1 use left", "Cursed! Smaller Size!", ""]
 	var ind = abilities.find(playerscript.ability)
 	frame = ind
 	$"../AbilityDescription".text = textList[ind]
