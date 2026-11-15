@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://mji4ud0uegpm" path="res://Assets/pixil-frame-0 (2).png" id="12_p20hg"]
 [ext_resource type="Texture2D" uid="uid://c32klmhw22a5c" path="res://Assets/Basic 4x.png" id="13_85gyg"]
 [ext_resource type="Script" uid="uid://but0jw8iemjgb" path="res://Scenes/fade.gd" id="14_85gyg"]
-[ext_resource type="Script" path="res://Scenes/pop.gd" id="15_c32x4"]
+[ext_resource type="Script" uid="uid://0tuw84h7s3n6" path="res://Scenes/pop.gd" id="15_c32x4"]
 [ext_resource type="PackedScene" uid="uid://de0abo88arx75" path="res://prefabs/bottom.tscn" id="17_gwne5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]

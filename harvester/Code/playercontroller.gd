@@ -9,7 +9,7 @@ var maxspeed = 250
 const flightspeed = 200
 const decelleration = 40
 const dash_speed = 250
-var ability = "none"
+var ability = "flight"
 var double_jump = true
 var isDashing = false
 var animation_buffer = 0
@@ -21,6 +21,7 @@ var flipped = false
 var vertMult = -1
 var gravityUses = 2
 var wall_jump_velocity = 0
+var movement_enabled = true
 @onready var fade = $"../CanvasLayer/ColorRect"
 
 @onready var groundCheck = $groundCheck
@@ -52,6 +53,7 @@ func grounded() -> bool:
 		return is_on_floor()
 
 func death(cause: String, override = false) -> void:
+	movement_enabled = false
 	isDashing = false
 	isFlying = false
 	flyingTimer = 0
@@ -78,6 +80,7 @@ func death(cause: String, override = false) -> void:
 	fade.fadein()
 	pop.fadein()
 	await get_tree().create_timer(1.0).timeout
+	movement_enabled = true
 
 func _ready() -> void:
 	pass
@@ -89,6 +92,7 @@ func _physics_process(delta: float) -> void:
 	if isFlying:
 		if flyingTimer <=0:
 			isFlying = false
+			movement_enabled = true
 		else:
 			flyingTimer -= delta
 			if flyingTimer <= 0:
@@ -184,6 +188,7 @@ func _physics_process(delta: float) -> void:
 		
 		if (ability == "flight") and not isFlying:
 			isFlying = true
+			movement_enabled = false
 			flyingTimer = 3
 			speed = 0
 		
@@ -210,7 +215,7 @@ func _physics_process(delta: float) -> void:
 			isDashing = false
 			ability = "none"
 			ui.update_ability()
-	elif not isFlying:
+	elif movement_enabled:
 		velocity.x = speed
 		velocity.x += wall_jump_velocity
 		if wall_jump_velocity > 0:
