@@ -652,12 +652,13 @@ tile_set = SubResource("TileSet_0e48y")
 position = Vector2(2768, 1125)
 
 [node name="Label" type="Label" parent="." unique_id=881922742]
-offset_left = 2068.0
-offset_top = -1.0
-offset_right = 2440.0
-offset_bottom = 22.0
+offset_left = 1981.0
+offset_top = 142.0
+offset_right = 2353.0
+offset_bottom = 165.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_c32x4")
-text = "Press E to place down a checkpoint!"
+text = "Press E to place down a checkpoint"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="." unique_id=868910129]
@@ -665,6 +666,7 @@ offset_left = 2967.0
 offset_top = -204.0
 offset_right = 3348.0
 offset_bottom = -129.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_c32x4")
 text = "Dying to this mob gives you the ability to teleport.
 You only get two teleports, so don't waste them!"
@@ -675,6 +677,7 @@ offset_left = 3522.0
 offset_top = -373.0
 offset_right = 4195.0
 offset_bottom = -324.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_c32x4")
 text = "If you die by teleporting into a wall, you get the fly ability.
 Or you could just... teleport through the wall normally?"
@@ -685,6 +688,7 @@ offset_left = 346.0
 offset_top = 107.0
 offset_right = 1019.0
 offset_bottom = 156.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_c32x4")
 text = "You can see your current ability
 in the bottom left corner"
@@ -695,10 +699,22 @@ offset_left = 1113.0
 offset_top = 24.0
 offset_right = 1786.0
 offset_bottom = 90.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_c32x4")
 text = "It's fine if you die.
 You can get a new ability for it.
 Bounce back from death!"
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="." unique_id=488269864]
+offset_left = 2158.0
+offset_top = 62.0
+offset_right = 2831.0
+offset_bottom = 128.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_c32x4")
+text = "Different deaths give different abilities.
+See what ability you get from this one"
 horizontal_alignment = 1
 
 [node name="enemy3" parent="." unique_id=757499492 instance=ExtResource("9_2ooml")]
