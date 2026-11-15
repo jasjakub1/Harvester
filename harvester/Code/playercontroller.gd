@@ -22,6 +22,7 @@ var flipped = false
 var vertMult = -1
 var gravityUses = 2
 var wall_jump_velocity = 0
+@onready var fade = $"../CanvasLayer/ColorRect"
 
 @onready var groundCheck = $groundCheck
 @onready var groundCheck2 = $groundCheck2
@@ -51,6 +52,8 @@ func grounded() -> bool:
 		return is_on_floor()
 
 func death(cause: String, override = false) -> void:
+	fade.fadeout()
+	await get_tree().create_timer(1.0).timeout
 	isDashing = false
 	isFlying = false
 	flyingTimer = 0
@@ -70,6 +73,8 @@ func death(cause: String, override = false) -> void:
 		teleportUses = 2
 	velocity = Vector2.ZERO
 	position = checkpoint
+	fade.fadein()
+	await get_tree().create_timer(1.0).timeout
 
 func _ready() -> void:
 	pass
@@ -78,13 +83,14 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	grounded()
-	ui.update_ability()
-	if flyingTimer <=0:
-		isFlying = false
-	else:
-		flyingTimer -= delta
-		if flyingTimer <= 0:
-			ability = "none"
+	if isFlying:
+		if flyingTimer <=0:
+			isFlying = false
+		else:
+			flyingTimer -= delta
+			if flyingTimer <= 0:
+				ability = "none"
+		ui.update_ability()
 	
 	if ability == "mini curse":
 		scale = Vector2(0.3, 0.3)
@@ -183,6 +189,7 @@ func _physics_process(delta: float) -> void:
 			gravityUses -= 1
 			if gravityUses == 0:
 				ability = "none"
+			ui.update_ability()
 		
 		if ability == "dash":
 			isDashing = true
@@ -201,6 +208,7 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_released("ability"):
 			isDashing = false
 			ability = "none"
+			ui.update_ability()
 	elif not isFlying:
 		velocity.x = speed
 		velocity.x += wall_jump_velocity

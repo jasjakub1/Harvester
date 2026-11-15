@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://b68t74b8i43av" path="res://Code/gameManager.gd" id="9_hpu6p"]
 [ext_resource type="PackedScene" uid="uid://bn8fq8qhcmnu3" path="res://prefabs/spikes.tscn" id="10_op2xg"]
 [ext_resource type="Texture2D" uid="uid://mji4ud0uegpm" path="res://Assets/pixil-frame-0 (2).png" id="12_p20hg"]
+[ext_resource type="Script" uid="uid://but0jw8iemjgb" path="res://Scenes/fade.gd" id="14_85gyg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_epypp"]
 texture = ExtResource("1_hvaui")
@@ -606,8 +607,14 @@ texture_filter = 1
 scale = Vector2(2, 2)
 texture = ExtResource("12_p20hg")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1974338825]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1201555494]
+layer = 100
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=434805404]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=97795951]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.078431375, 0.078431375, 0.078431375, 0)
+script = ExtResource("14_85gyg")
