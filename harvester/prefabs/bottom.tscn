@@ -8,8 +8,5 @@
 script = ExtResource("1_vum7q")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=609704315]
-position = Vector2(-1489.3212, 94.818756)
-scale = Vector2(14.622007, -0.013020828)
-polygon = PackedVector2Array(-3, 110, -1, 156, 832, 155, 831, 108)
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
