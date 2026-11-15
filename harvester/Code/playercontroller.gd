@@ -9,11 +9,12 @@ var maxspeed = 250
 const flightspeed = 200
 const decelleration = 40
 const dash_speed = 250
-var ability = "flight"
+var ability = "none"
+var prevAbility = "none"
 var double_jump = true
 var isDashing = false
 var animation_buffer = 0
-var dashDistance = 120
+var dashDistance = 100
 @onready var checkpoint = position
 var isFlying = true
 var flyingTimer = 0
@@ -53,6 +54,9 @@ func grounded() -> bool:
 		return is_on_floor()
 
 func death(cause: String, override = false) -> void:
+	prevAbility = ability
+	$music.Mute()
+	$powerDown.Play()
 	movement_enabled = false
 	isDashing = false
 	isFlying = false
@@ -77,6 +81,7 @@ func death(cause: String, override = false) -> void:
 	ui.update_ability()
 	
 	position = checkpoint
+	$powerUp.Play()
 	fade.fadein()
 	pop.fadein()
 	await get_tree().create_timer(1.0).timeout
@@ -182,11 +187,12 @@ func _physics_process(delta: float) -> void:
 			speed = 0
 	if isFlying:
 		var vertDirection = Input.get_axis("up", "down")
-		velocity = Vector2(0.5*direction, 0.7*vertDirection) * flightspeed
+		velocity = Vector2(0.5*direction, vertDirection) * flightspeed
 	
 	if Input.is_action_just_pressed("ability"):
 		
 		if (ability == "flight") and not isFlying:
+
 			isFlying = true
 			movement_enabled = false
 			flyingTimer = 2
@@ -207,6 +213,7 @@ func _physics_process(delta: float) -> void:
 			ability = "none"
 			if not gameManager._has_exited_floor():
 				death("crush")
+			ui.update_ability()
 			
 	
 	if isDashing:
@@ -224,3 +231,7 @@ func _physics_process(delta: float) -> void:
 			wall_jump_velocity += 10
 	
 	move_and_slide()
+
+
+func _on_music_ready() -> void:
+	$music.Play()

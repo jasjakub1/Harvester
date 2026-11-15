@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bb3i7hlvletxg"]
+
+[ext_resource type="Texture2D" uid="uid://dqc52326msrd" path="res://Assets/standard-bg.png" id="1_pyhgl"]
+[ext_resource type="FontFile" uid="uid://cf83s76qtwdet" path="res://Assets/PixeloidMono.ttf" id="2_o3goa"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7yj50"]
+font = ExtResource("2_o3goa")
+font_size = 128
+font_color = Color(0.012617188, 0.012617188, 0.012617188, 1)
+
+[node name="Victory" type="Node2D" unique_id=1258416714]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=752150432]
+
+[node name="StandardBg" type="Sprite2D" parent="." unique_id=1197255217]
+texture_filter = 1
+position = Vector2(3.4999695, -11)
+scale = Vector2(4.246875, 4.233333)
+texture = ExtResource("1_pyhgl")
+
+[node name="Label" type="Label" parent="." unique_id=1419642668]
+offset_left = -336.0
+offset_top = -87.0
+offset_right = 347.0
+offset_bottom = 70.0
+text = "Victory!"
+label_settings = SubResource("LabelSettings_7yj50")
+horizontal_alignment = 1
+vertical_alignment = 1

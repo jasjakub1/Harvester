@@ -4,6 +4,7 @@ extends Sprite2D
 @onready var playerscript = $"../../CharacterBody2D"
 
 func fadeout() -> void:
+	frame = abilities.find(playerscript.prevAbility)
 	var tween = create_tween()
 	tween.tween_property(self, "modulate:a", 2, 1)
 
