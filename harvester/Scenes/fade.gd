@@ -1,15 +1,14 @@
 extends ColorRect
 
+@onready var list = $"../../CharacterBody2D/Camera2D/CanvasLayer2/Sprite2D".frame
 
 func fadeout() -> void:
 	var tween = create_tween()
 	tween.tween_property(self, "color:a", 2, 1)
-	print("fade out finished")
 
 func fadein() -> void:
 	var tween = create_tween()
 	tween.tween_property(self, "color:a", 0, 1)
-	print("fade in finished")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

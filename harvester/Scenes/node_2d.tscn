@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bn8fq8qhcmnu3" path="res://prefabs/spikes.tscn" id="10_op2xg"]
 [ext_resource type="Texture2D" uid="uid://mji4ud0uegpm" path="res://Assets/pixil-frame-0 (2).png" id="12_p20hg"]
 [ext_resource type="Script" uid="uid://but0jw8iemjgb" path="res://Scenes/fade.gd" id="14_85gyg"]
+[ext_resource type="Script" uid="uid://0tuw84h7s3n6" path="res://Scenes/pop.gd" id="15_c32x4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_epypp"]
 texture = ExtResource("1_hvaui")
@@ -555,6 +556,7 @@ label_settings = SubResource("LabelSettings_rj586")
 layer = -11
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/Camera2D/CanvasLayer2" unique_id=46676158]
+z_index = -10
 position = Vector2(642, 363)
 scale = Vector2(4, 4)
 texture = ExtResource("7_he4j0")
@@ -618,3 +620,12 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.078431375, 0.078431375, 0.078431375, 0)
 script = ExtResource("14_85gyg")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer" unique_id=62133312]
+texture_filter = 1
+position = Vector2(655, 362)
+scale = Vector2(10, 10)
+texture = ExtResource("4_he4j0")
+hframes = 5
+vframes = 2
+script = ExtResource("15_c32x4")

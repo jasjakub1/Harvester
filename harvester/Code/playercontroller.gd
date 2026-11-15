@@ -31,6 +31,7 @@ var wall_jump_velocity = 0
 @onready var animation = $AnimatedSprite2D
 @onready var gameManager = $"../GameManager"
 @onready var ui = $"Camera2D/CanvasLayer/Ability"
+@onready var pop = $"../CanvasLayer/Sprite2D"
 
 func grounded() -> bool:
 	if flipped:
@@ -52,8 +53,6 @@ func grounded() -> bool:
 		return is_on_floor()
 
 func death(cause: String, override = false) -> void:
-	fade.fadeout()
-	await get_tree().create_timer(1.0).timeout
 	isDashing = false
 	isFlying = false
 	flyingTimer = 0
@@ -72,8 +71,15 @@ func death(cause: String, override = false) -> void:
 	if ability == "teleport":
 		teleportUses = 2
 	velocity = Vector2.ZERO
+	
+	pop.fadeout()
+	fade.fadeout()
+	await get_tree().create_timer(1.0).timeout
+	ui.update_ability()
+	
 	position = checkpoint
 	fade.fadein()
+	pop.fadein()
 	await get_tree().create_timer(1.0).timeout
 
 func _ready() -> void:
